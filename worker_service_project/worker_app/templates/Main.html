@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'img/photo-1614213951697-a45781262acf.jfif' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            background-image: url("static/img/photo.jfif");
+            height: 100%;
+            width: 100%;
+            /* The image used */
+            /* Full height */
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .navbar .nav-link {
+            color: #fff !important;
+        }
+    </style>
+</head>
+<div class="bg mask">
+
+    <body>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark d-none d-lg-block bg-dark " style="z-index: 2000;">
+            <div class="container-fluid">
+                <!-- Navbar brand -->
+                <a class="navbar-brand  nav-link" target="_blank" href="https://mdbootstrap.com/docs/standard/">
+                    <ion-icon style="position: absolute;top: 6px;left: 30px;width: 45px;height: 45px;"
+                        name="logo-web-component">
+                    </ion-icon>
+                    <ion-icon style="position: absolute;top: 18px;left: 44px;width: 18px;height: 18px;"
+                        name="build-outline"></ion-icon>
+                </a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarExample01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item active">
+                            <a class="nav-link me-5" aria-current="page" href="/home">W Services
+                            </a>
+                        </li>
+                        <li class="nav-item ml-5">
+                            <div class="input-group">
+                                <input type="search" class="form-control rounded" placeholder="Search Among Services"
+                                    aria-label="Search" aria-describedby="search-addon" />
+                                <button type="button" class="btn btn-outline-warning">search</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <ul class="navbar-nav d-flex flex-row">
+                    <!-- Icons -->
+                    <li class="nav-item ">
+                        <a class="nav-link me-5" href="#reviews" rel="nofollow" target="_blank">My References</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link me-5" href="join_workers" rel="nofollow" target="join_workers">Join Our
+                            Workers</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link me-5" href="edit_page" rel="nofollow" target="edit">My Profile</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link me-5" href="/" rel="nofollow" target="/">Log Out</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div class="container-fluid  ml-3">
+            <div class="row col5">
+                <div class="col-3 border"
+                    style="background-color: white;border-radius: 5px; margin-top: 70px; height:400px;">
+                    <form class="text-center p-2" action="/create_service" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group border-width-4">
+                            <input type="name" class="form-control" id="name" name="name" aria-describedby="name"
+                                placeholder="Service Name" style="border-color: orange;">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Descrption:</label>
+                            <textarea name="description" id="" cols="30" rows="10" class="align-top"
+                                style="border-color: orange;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary text-center"
+                            style="background-color: orange;">Create</button>
+                    </form>
+                </div>
+                <div class="col-9 d-flex flex-row flex-wrap" style="margin-top: 70px;">
+                    {% for service in all_services%}
+                    <div class="col-2  border ml-5 mb-1 card-body  text-center flex-row"
+                        style="background-color: white; border-radius: 5px;   height: 185px;">
+                        <h5 class="card-title">{{service.name}}</h5>
+                        <p class="card-text ">{{service.description}}
+                        </p>
+                        <form action="/details" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary text-center d-flex align-items-end "
+                                style="background-color: orange;">See
+                                Contacts</button>
+                        </form>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+</div>
+<footer class="bg-light text-lg-start">
+    <hr class="m-0" />
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2030 Copyright: Made by Mohammad Omair, Abdulhadi Numan and Hassan Odeh
+    </div>
+</footer>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

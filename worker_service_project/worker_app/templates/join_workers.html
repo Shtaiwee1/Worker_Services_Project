@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- STATIC -->
+    {% load static  %}
+    <link rel="stylesheet" href="{% static 'img/alexander-schimmeck-1n5jjlybaf-1.jpg' %}">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- Start your project here-->
+    <!--Main Navigation-->
+
+    <header>
+        <style>
+            #intro {
+                background-image: url(static/img/alexander-schimmeck-1n5jjlybaf-1.jpg);
+            }
+
+
+            /* Height for devices larger than 576px */
+            @media (min-width: 992px) {
+                #intro {
+                    margin-top: -58.59px;
+                }
+            }
+
+            .navbar .nav-link {
+                color: #fff !important;
+            }
+        </style>
+
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark d-none d-lg-block bg-dark" style="z-index: 2000;">
+            <div class="container-fluid">
+                <!-- Navbar brand -->
+                <a class="navbar-brand  nav-link" href="https://mdbootstrap.com/docs/standard/">
+                    <ion-icon style="position: absolute;top: 6px;left: 30px;width: 45px;height: 45px;"
+                        name="logo-web-component">
+                    </ion-icon>
+                    <ion-icon style="position: absolute;top: 18px;left: 44px;width: 18px;height: 18px;"
+                        name="build-outline"></ion-icon>
+
+                </a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarExample01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item active">
+                            <a style="margin-left: 25px;" class="nav-link me-5" aria-current="page"
+                                href="#">Hello,{{current_user.first_name}}{{current_user.last_name}} </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a style="margin-left: 25px;" class="nav-link me-5" aria-current="page" href="#">One
+                                place for all services</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link me-5" href="/main" rel="nofollow">Go back</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="navbar-nav d-flex flex-row">
+                        <!-- Icons -->
+                        <li class="nav-item me-3 me-lg-0">
+                            <a class="nav-link" href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA"
+                                rel="nofollow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-youtube me-3" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                                </svg>
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item me-3 me-lg-0">
+                            <a class="nav-link" href="https://www.facebook.com/mdbootstrap" rel="nofollow"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-facebook me-3" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                                </svg>
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item me-3 me-lg-0">
+                            <a class="nav-link" href="https://twitter.com/MDBootstrap" rel="nofollow"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-twitter me-3" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                </svg>
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item me-3 me-lg-0">
+                            <a class="nav-link" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-github me-5" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                                </svg>
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!-- Background image -->
+        <div id="intro" class=" bg-image  shadow-2-strong ">
+            <div class="mask d-flex align-items-center h-100 " style="background-color: rgba(0, 0, 0, 0.568);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-xl-5 col-md-8">
+
+                            <form id="new_worker_form" action="/new_worker" method="post"
+                                style="width: 500px; margin-left: 400px; border-radius: 12px; margin-top: 100px;margin-bottom: 20px;"
+                                class=" bg-white  rounded-5 shadow-5-strong p-5 me-5">
+                                {% csrf_token %}
+                                <h1 style="text-align: center;">Join our workers</h1>
+                                <div class="col my-5"></div>
+                                <!-- Email input -->
+                                <div class=" form-outline mb-4">
+                                    <label class="form-label" for="form1Example1">Phone number</label>
+                                    <input type=" phone_number" name="phone_number" id="ValidationServer01"
+                                        value="15417543010" class="form-control is-valid" required:>
+                                    <div class="valid-feedback">Looks good</div>
+
+                                </div>
+                                <div class=" form-outline mb-4">
+                                    <label class="form-label" for="form1Example1">Location</label>
+                                    <input type=" location" name="location" id="ValidationServer02" value="Texas"
+                                        class="form-control is-valid" required:>
+                                    <div class="valid-feedback">Looks good</div>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label for="validationServerUsername" class="form-label">Price per hour</label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text" id="inputGroupPrepend3">$</span>
+                                        <input name="price" type="text" class="form-control is-invalid"
+                                            id="validationServerUsername01"
+                                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+                                            required>
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                            Price is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label for="validationServerUsername" class="form-label">Career</label>
+                                    <div class="input-group has-validation">
+
+                                        <select class="form-control is-invalid form-select"
+                                            aria-label="Default select example" name="career" type="text"
+                                            id="validationServerUsername02"
+                                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+                                            required>
+                                            <option selected>Open this select menu</option>
+                                            {% for service in all_services %}
+                                            <option value="{{service.name}}">{{service.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                            Career name is required.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Password input -->
+
+                                <div class="form-outline mb-4">
+                                    <label for="validationServerUsername" class="form-label">Description</label>
+                                    <div class="input-group has-validation">
+
+                                        <textarea name="desc" type="text" class="form-control is-invalid"
+                                            id="validationServerUsername03"
+                                            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+                                            required></textarea>
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                            Description is required
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2 column grid layout for inline styling -->
+                                <div class="row mb-4">
+                                    <div class="col d-flex flex-column  justify-content-center">
+                                        <!-- Checkbox -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="form1Example3"
+                                                checked />
+                                            <label class="form-check-label" for="form1Example3">
+                                                Remember me
+                                            </label>
+                                        </div>
+
+                                        <!-- Simple link -->
+                                        <div style="padding-left: 0;" class="form-check my-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input " type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label style="width: 230px;" class="form-check-label "
+                                                    for="flexCheckDefault">
+                                                    Agree to terms and conditions
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <!-- Background image -->
+    </header>
+    <!--Main Navigation-->
+
+    <!--Footer-->
+    <footer class="bg-light text-lg-start">
+
+
+        <hr class="m-0" />
+
+
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2030 Copyright: Made by Mohammad Omair, Abdulhadi Numan and Hassan Odeh
+        </div>
+    </footer>
+    <!--Footer-->
+
+    <!-- <script type="text/javascript">
+        $(document).on('submit', '#new_worker_form', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '/new_worker',
+                data: {
+                    phone_number: $('#ValidationServer01').val(),
+                    location: $('#ValidationServer02').val(),
+                    price: $('#validationServerUsername01').val(),
+                    career: $('#validationServerUsername02').val(),
+                    desc: $('#validationServerUsername03').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function () {
+                    alert("Congratulations!You are a worker now!");
+
+                }
+            });
+        })
+    </script> -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+        <div class="registration">
+            <h1>Registration</h1> -->
+<!--Displays the errors here⬇
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <!--Displays the errors here⬆-->
+<!--registration form redirects to the process roue using (action) and passes data using (method) post-->
+<!-- <form action="/process" method="post">
+                {% csrf_token %} -->
+<!--cross site request forgery token must be in every form for security reasons-->
+<!-- <p><label id="first-n" for="">First Name</label>
+                    <input type="text" name="first_name"></p><br> -->
+<!--The names of the inputs are used to access them in the views page-->
+<!-- <p><label id="last-n" for="">Last Name</label>
+                    <input type="text" name="last_name"></p><br> -->
+
+<!-- <p><label id="birthday" for="">Birthday</label>
+                    <input type="text" name="birthday" placeholder="YYYY-MM-DD"></p><br> -->
+
+<!-- <p><label id="email" for="">Email</label>
+                    <input type="text" name="email"></p><br> -->
+
+<!-- <p><label id="pw" for="">Password</label> -->
+<!-- <input type="text" name="password"></p><br> -->
+
+<!-- <p><label id="confirm-pw" for="">Confirm PW</label> -->
+<!-- <input type="text" name="confirm"></p><br> -->
+<!--pressing the register button will save form data and redirect to process registration function route-->
+<!-- <button type="submit">Register</button> -->
+<!-- </form>
+        </div> -->
+<!-- <div class="login"> -->
+<!-- {% if messages1 %}
+            <ul class="messages">
+                {% for message in messages1 %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul> -->
+<!-- {% endif %}
+            <form action="/check_login" method="post">
+                {% csrf_token %}
+                <h2>Login</h2>
+                <p><label id="email2" for="">Email</label>
+                    <input type="text" name="email_login"></p><br> -->
+
+<!-- <p><label id="pw2" for="">Password</label>
+                    <input type="text" name="password_login"></p><br> -->
+<!--pressing the login button will save form data and redirect to check login function route-->
+<!-- <button type="submit">Login</button> -->
+<!-- </form> -->
+
+<!-- </div> -->
+<!-- </div> -->

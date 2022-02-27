@@ -1,0 +1,52 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+body{font-family: 'Balsamiq Sans', cursive;}
+
+html{scroll-behavior: smooth;
+
+    overflow-x: hidden;}
+
+
+.container{
+    display: flex;
+    justify-content: space-evenly;}
+
+button{
+    font-weight: 600;}
+
+#email{
+    margin-right: 37px;}
+
+#pw{
+    margin-right: 10px;}
+
+#email2{
+    margin-right: 25px;}
+
+h1{
+    margin-bottom: 40px;}
+h2{
+    margin-bottom: 40px;}
+
+
+.registration{
+    text-align: center;}
+
+.login{
+    text-align: center;}
+
+#logout{
+    position: absolute;
+    top: 20px;right:30px;
+    font-size: 25px;}
+
+#birthday{margin-right:15px ;} */
+
+
+
+
+/* **************************testimonials********************** */
+
+
+
+
