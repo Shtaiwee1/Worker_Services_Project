@@ -13,6 +13,7 @@ def index(request):
 
 def check(request):
     errors = User.objects.basic_validator_second(request.POST)
+    request.session["coming_from"]="LOGIN"
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
@@ -45,6 +46,12 @@ def join_form(request):
     return render(request, "join_workers.html",context)
 
 def create_user(request):
+    errors = User.objects.basic_validator(request.POST)
+    request.session["coming_from"]="Register"
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/')
     first_name=request.POST['first_name']
     last_name=request.POST['last_name']
     email=request.POST['email']
@@ -54,6 +61,6 @@ def create_user(request):
                         last_name=last_name,
                         email=email,
                         password=pw_hash)
-    return HttpResponse('')
+    return redirect('/main')
 
 

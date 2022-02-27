@@ -6,10 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     {% load static %}
     <link rel="stylesheet" href="{% static 'img/photo-1614213951697-a45781262acf.jfif' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tags").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#all_services*").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+                });
+            });
+        });
+    </script>
+
     <style>
         body,
         html {
@@ -19,11 +34,8 @@
 
         .bg {
             background-image: url("static/img/photo.jfif");
-            height: 100%;
+            min-height: 800px;
             width: 100%;
-            /* The image used */
-            /* Full height */
-            /* Center and scale the image nicely */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -40,7 +52,7 @@
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark d-none d-lg-block bg-dark " style="z-index: 2000;">
             <div class="container-fluid">
                 <!-- Navbar brand -->
-                <a class="navbar-brand  nav-link" target="_blank" href="https://mdbootstrap.com/docs/standard/">
+                <a class="navbar-brand  nav-link" href="/main">
                     <ion-icon style="position: absolute;top: 6px;left: 30px;width: 45px;height: 45px;"
                         name="logo-web-component">
                     </ion-icon>
@@ -54,15 +66,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarExample01">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+
                         <li class="nav-item active">
-                            <a class="nav-link me-5" aria-current="page" href="/home">W Services
-                            </a>
+                            <a style="margin-left: 25px;" class="nav-link me-5" aria-current="page"
+                                href="/profile">Hello,
+                                {{current_user.first_name}} {{current_user.last_name}}</a>
                         </li>
                         <li class="nav-item ml-5">
                             <div class="input-group">
-                                <input type="search" class="form-control rounded" placeholder="Search Among Services"
-                                    aria-label="Search" aria-describedby="search-addon" />
-                                <button type="button" class="btn btn-outline-warning">search</button>
+                                <input type="search" id="tags" class="form-control rounded"
+                                    placeholder="Search Among Services" aria-label="Search"
+                                    aria-describedby="search-addon" />
+                                <button type="button" class="btn btn-outline-success">search</button>
                             </div>
                         </li>
 
@@ -71,17 +86,17 @@
                 <ul class="navbar-nav d-flex flex-row">
                     <!-- Icons -->
                     <li class="nav-item ">
-                        <a class="nav-link me-5" href="#reviews" rel="nofollow" target="_blank">My References</a>
+                        <a class="nav-link me-5" href="/my_workers" rel="nofollow">My References</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link me-5" href="join_workers" rel="nofollow" target="join_workers">Join Our
+                        <a class="nav-link me-5" href="/join_us" rel="nofollow">Join Our
                             Workers</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link me-5" href="edit_page" rel="nofollow" target="edit">My Profile</a>
+                        <a class="nav-link me-5" href="/profile" rel="nofollow">My Profile</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link me-5" href="/" rel="nofollow" target="/">Log Out</a>
+                        <a class="nav-link me-5" href="/destroy" rel="nofollow">Log Out</a>
                     </li>
                 </ul>
 
@@ -90,37 +105,44 @@
         <div class="container-fluid  ml-3">
             <div class="row col5">
                 <div class="col-3 border"
-                    style="background-color: white;border-radius: 5px; margin-top: 70px; height:400px;">
-                    <form class="text-center p-2" action="/create_service" method="POST">
+                    style="background-color: rgb(228, 190, 146);border-radius: 5px; margin-top: 70px; height:500px;">
+                    <form class="text-center p-2" action="/add_field" method="POST">
                         {% csrf_token %}
                         <div class="form-group border-width-4">
                             <input type="name" class="form-control" id="name" name="name" aria-describedby="name"
-                                placeholder="Service Name" style="border-color: orange;">
+                                placeholder="Service Name" style="border-color: #212529;">
                         </div>
                         <div class="form-group">
                             <label for="description">Descrption:</label>
                             <textarea name="description" id="" cols="30" rows="10" class="align-top"
-                                style="border-color: orange;"></textarea>
+                                style="border-color: #212529;"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary text-center"
-                            style="background-color: orange;">Create</button>
+                            style="background-color: #212529;">Create</button>
                     </form>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div>
-                <div class="col-9 d-flex flex-row flex-wrap" style="margin-top: 70px;">
-                    {% for service in all_services%}
-                    <div class="col-2  border ml-5 mb-1 card-body  text-center flex-row"
-                        style="background-color: white; border-radius: 5px;   height: 185px;">
-                        <h5 class="card-title">{{service.name}}</h5>
-                        <p class="card-text ">{{service.description}}
-                        </p>
-                        <form action="/details" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary text-center d-flex align-items-end "
-                                style="background-color: orange;">See
-                                Contacts</button>
-                        </form>
+
+                <div class="col-9 d-flex flex-row flex-wrap" style="margin-top: 52px;">
+                    {% for service in all_services %}
+                    <div id="all_services" style="width: 230px; margin-top: 10px;">
+                        <div class="col-10 border ml-5 card-body text-center d-flex flex-column justify-content-around"
+                            style="background-color:rgb(228, 190, 146) ; border-radius: 5px; height: 200px; margin-top: 8px;">
+                            <h5 id="names" class="card-title">{{service.name}}</h5>
+                            <p class="card-text text-left  ">{{service.description}}
+                            </p>
+                            <a style="text-decoration: none;background-color: #212529;color: white;padding: 9px;border-radius: 3px;text-align: center;"
+                                href="/workers_list/{{service.id}}">See contacts</a>
+                        </div>
                     </div>
-                    {%endfor%}
+
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -132,8 +154,24 @@
         © 2030 Copyright: Made by Mohammad Omair, Abdulhadi Numan and Hassan Odeh
     </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<script>
+    $(function () {
+        $("#tags").autocomplete({
+            source: "{% url 'main' %}"
+        });
+    });
+</script>
+
 </body>
 
 </html>

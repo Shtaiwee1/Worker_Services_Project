@@ -63,12 +63,26 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects=UserManager()#objects attribute functionality extended using built in manager class
 
+
+class ServiceManager(models.Manager):
+    def basic_validator(self, postData):
+        errors = {}
+        # add keys and values to errors dictionary for each invalid field
+        if len(postData['name']) < 3:
+            errors["name"] = "Service name should be at least 3 characters"
+        if len(postData['description']) < 10:
+            errors["description"] = "Service description should be at least 10 characters"
+        return errors
+
+
+
 class Service(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(default="goodn")
     users = models.ManyToManyField(User, related_name="services")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = ServiceManager()
 
     
     
@@ -86,8 +100,3 @@ class Worker(models.Model):
     service = models.ForeignKey(Service, related_name="workers", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
-
-    
-
-    
