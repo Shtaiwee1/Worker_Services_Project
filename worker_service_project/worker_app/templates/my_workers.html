@@ -146,28 +146,30 @@
             </div>
         </div>
     </nav>
-    {% for worker in my_references %}
+
     <div id="flip"
         style="height: 55px; width: inherit; background-color: rgba(214, 190, 190, 0.801); text-align: center; margin-top: 5px; ">
-        <h1>{{worker.career}}</h1>
+        <h1>all workers saved</h1>
     </div>
-    <div id="panel">{{worker.desc}}</div>
+    <div id="panel">Saved workers details</div>
     <div class="boxes"
         style="width: 1200px; display: flex; justify-content: space-around; flex-wrap: wrap; margin: 0 auto; margin-top: 20px;">
         <!-- for loop -->
+        {% for worker in my_references %}
         <div class="box1"
-            style=" width: 300px; height: 411px; outline: black 2px solid; margin: 20px; background-color: rgba(214, 190, 190, 0.801);">
+            style=" width: 300px; height: 470px; outline: black 2px solid; margin: 20px; background-color: rgba(214, 190, 190, 0.801);">
             <img src="{% static '/img/user7.png'%}" alt="Jane" style="width: 200px; margin-left: 60px;">
             <h2 style="width: 300px; text-align: center;">{{worker.first_name}}{{worker.last_name}}</h2>
             <p style="width: 300px; text-align: center; color: #000;" class="title">{{worker.phone_number}}</p>
             <p style="width: 300px; text-align: center;">{{worker.location}}</p>
+            <p style="width: 300px; text-align: center;">{{worker.career}}</p>
             <p style="width: 300px; text-align: center;">{{worker.email}}</p>
             <p><a style="text-decoration: none;" class="button" href="/remove_contact/{{worker.id}}">Remove contact</a>
             </p>
         </div>
         <!-- for loop -->
+        {% endfor %}
     </div>
-    {% endfor %}
 
 
 

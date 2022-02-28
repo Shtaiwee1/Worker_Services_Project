@@ -1,8 +1,12 @@
+import imp
+from pickle import FALSE
 from unicodedata import name
+from django.http import JsonResponse
 from django.shortcuts import render , redirect
 from django.contrib import messages#import error messages for display
 import bcrypt#importing bcrypt after installing using pip install bcrypt used for hashing,encoding and decoding
 from login_registration_app.models import User , Worker , Service#importing class from models.py
+from django.contrib import messages
 
 #root page
 
@@ -11,14 +15,35 @@ def main(request):
     this_user=User.objects.get(id=request.session['userid'])
     context={"all_services":Service.objects.all(),
             "current_user":this_user}
+    if 'term' in request.GET:
+        qs=Service.objects.filter(name__istartswith=request.GET.get('term'))
+        names=list()
+        for service in qs:
+            names.append(service.name)
+        return JsonResponse(names, safe=False)
+        
     return render(request,'Main.html',context)
 
+
 def add_field(request):
-    name=request.POST['name']
-    description=request.POST['description']
-    new_service=Service.objects.create(name=name,description=description)
-    
-    return redirect('/main')
+    errors = Service.objects.basic_validator(request.POST)
+        # check if the errors dictionary has anything in it
+    if len(errors) > 0:
+        # if the errors dictionary contains anything, loop through each key-value pair and make a flash message
+        for key, value in errors.items():
+            messages.error(request, value)
+        # redirect the user back to the form to fix the errors
+        return redirect('/main')
+    else:
+        # if the errors object is empty, that means there were no errors!
+        # retrieve the Service to be updated, make the changes, and save
+        name=request.POST['name']
+        description=request.POST['description']
+        new_service=Service.objects.create(name=name,description=description)
+        messages.success(request,"")
+        # redirect to a success route
+        return redirect('/main')
+
 
 def profile(request):
     this_user=User.objects.get(id=request.session['userid'])
@@ -70,10 +95,10 @@ def my_workers(request):
 def workers_group(request , service_id):
     this_user=User.objects.get(id=request.session['userid'])
     the_service = Service.objects.get(id=service_id)
-    this_service=User.objects.get(id=service_id)
+    # this_service=User.objects.get(id=service_id)
     workers_in_service=Worker.objects.filter(service_id=service_id)
     print(the_service.name)
-    context={"this_service":this_service,
+    context={
             "workers_in_this_service":workers_in_service,
             "current_user":this_user,
             "the_service" :the_service
