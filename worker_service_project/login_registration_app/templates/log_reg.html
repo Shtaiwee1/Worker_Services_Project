@@ -54,7 +54,7 @@
                     if (target.length) {
                         $('html,body').animate({
                             scrollTop: target.offset().top
-                        }, 300);
+                        }, 500);
                         return false;
                     }
                 }
@@ -289,55 +289,60 @@
         <div id="intro" class=" bg-image  shadow-2-strong  ">
             <div class="mask d-flex align-items-center h-100 " style="background-color: rgba(0, 0, 0, 0.568);">
                 <div class="col-xl-5 col-md-8">
-                    {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul> -->
-                    {% endif %}
+
                     <div style="width: 450px;margin-left: 160px;" class="container_form fadeinleft">
                         <div class="header">
                             <h2>Create Account</h2>
+                            {% if "coming_from" in request.session %}
+                            {% if request.session.coming_from == 'REGISTER' %}
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
                         </div>
-                        <form id="new_user_form" class="form">
+                        <form id="new_user_form" class="form" action="/user/create" method="post">
                             {% csrf_token %}
                             <div class="form-control">
                                 <label for="first_name">First Name</label>
-                                <input type="text" placeholder="florinpop17" id="first_name" />
+                                <input name="first_name" type="text" placeholder="florinpop17" id="first_name" />
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
                                 <small>Error message</small>
                             </div>
                             <div class="form-control">
                                 <label for="last_name">Last name</label>
-                                <input type="text" placeholder="florinpop17" id="last_name" />
+                                <input name="last_name" type="text" placeholder="florinpop17" id="last_name" />
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
                                 <small>Error message</small>
                             </div>
                             <div class="form-control">
                                 <label for="email">Email</label>
-                                <input type="text" placeholder="a@florin-pop.com" id="email" />
+                                <input name="email" type="text" placeholder="a@florin-pop.com" id="email" />
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
                                 <small>Error message</small>
                             </div>
                             <div class="form-control">
                                 <label for="password">Password</label>
-                                <input type="password" placeholder="Password" id="password" />
+                                <input name="password" type="password" placeholder="Password" id="password" />
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
                                 <small>Error message</small>
                             </div>
                             <div class="form-control">
                                 <label for="username">Confirm password</label>
-                                <input type="password" placeholder="Password two" id="confirm" />
+                                <input name="confirm" type="password" placeholder="Password two" id="confirm" />
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
                                 <small>Error message</small>
                             </div>
-                            <button>Register</button>
+                            <button type="submit">Register</button>
                         </form>
 
                     </div>
@@ -351,12 +356,16 @@
                     <div class="header">
                         <h2>Sign in</h2>
                     </div>
+                    {% if "coming_from" in request.session %}
+                    {% if request.session.coming_from == 'LOGIN' %}
                     {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
                         <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                         {% endfor %}
-                    </ul> -->
+                    </ul>
+                    {% endif %}
+                    {% endif %}
                     {% endif %}
                     <form style="height: 1000px;" id="log_in_form" class="form " action="/check_login" method="post">
                         {% csrf_token %}
@@ -404,6 +413,17 @@
                 href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" rel="nofollow">
                 Our branches
             </a>
+            {% if "coming_from" in request.session %}
+            {% if request.session.coming_from == 'REGISTER' %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endif %}
+            {% endif %}
 
         </div>
 
@@ -821,19 +841,19 @@
 
 
 <!-- SCRIPT FOR Login FORM -->
-<!-- <script>
+<script>
     const log_in_form = document.getElementById('log_in_form');
     const email_login = document.getElementById('email_login');
     const password_login = document.getElementById('password_login');
 
 
-    log_in_form.addEventListener('submit', e => {
+    log_in_form.addEventListener('change', e => {
         e.preventDefault();
 
-        checkInputs();
+        checkLoginInputs();
     });
 
-    function checkInputs() {
+    function checkLoginInputs() {
         // trim to remove the whitespaces
 
         const email_loginValue = email_login.value.trim();
@@ -873,13 +893,13 @@
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             .test(email_login);
     }
-</script> -->
+</script>
 <!-- SCRIPT FOR Login FORM -->
 
 
 
 <!-- FORM WITHOUT REFRESH -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).on('submit', '#new_user_form', function (e) {
         e.preventDefault();
 
@@ -899,7 +919,7 @@
             }
         });
     })
-</script>
+</script>-->
 
 
 

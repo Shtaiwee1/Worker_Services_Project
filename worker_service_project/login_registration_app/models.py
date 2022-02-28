@@ -31,15 +31,6 @@ class UserManager(models.Manager):#Manager class to customize error messages and
         #password confirmation error
         if postData['password'] != postData['confirm']:
             errors["confirm"] = "Passwords doesn't match"
-        #birthday errors
-        #birthday empty field error #birthday is required
-        if len(postData['birthday']) < 1:
-            errors["birthday"]="Date of Birth is required" 
-        #birthday can't be in the future error
-        else:
-            birthdate = datetime.strptime(postData["birthday"], "%Y-%m-%d")
-            if birthdate > datetime.now():
-                errors["birthday_date"]="Date of Birth must be in the past"
         return errors   
     #second validater for the login form
     def basic_validator_second(self, postData):
