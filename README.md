@@ -38,6 +38,8 @@ Jquery:JavaScript library for designing and make some web development tasks easy
 Other technologies used in this project:
 AJAX: a web development technique for making asynchronous calls to the server.
 
+https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG
+
 
 Our project contains:
 
