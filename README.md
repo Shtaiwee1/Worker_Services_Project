@@ -61,6 +61,10 @@ Note:The forms contains server side and client side validations.
 6-Join our workers includes the form to join workers who provide services in the website.
 ![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture8.PNG)
 
+# additional features:
+The landing page consists of multiple sections that you can navigate to using the smooth scroll from the fixed top navbar.
+
+
 
 
 # Designed by:Mohammad Omair, Abdelhadi Numan, Hassan Odeh
