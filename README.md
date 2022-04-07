@@ -42,17 +42,18 @@ AJAX: a web development technique for making asynchronous calls to the server.
 
 # Our project contains:
 
-1-Landing page which contains the login and registration forms, customer reviews, about us information, and details which urges the customers to use this application.
-![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
+1-Landing page which contains the login and registration forms, customer reviews, about us information, and information that encourages customers to be apart of our community.
+Note:The forms contains server side and client side validations.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture6.PNG)
 
-2-The main page contains services categories from which the user can choose different fields or add a new one.
+2-The main page contains services categories from which the user can choose different fields, add a new one, or search for whatever service that he needs
 ![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
 
 3-My profile page contains the users information, he/she can edit his own account information.
-![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture2.PNG)
 
-4-see contacts page includes all workers that belong to the field the user have chosen, gives the user the ability to save any workers info. for future refernce.
-![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
+4-see contacts page includes all workers that belong to the field the user have chosen, gives the user the ability to save any workers info to his own data for future refernce.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture4.PNG)
 
 5-My references page consists of all the workers details that the user have saved, and it gives the user ability to remove workers info.
 ![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
