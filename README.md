@@ -56,7 +56,7 @@ Note:The forms contains server side and client side validations.
 ![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture4.PNG)
 
 5-My references page consists of all the workers details that the user have saved, and it gives the user ability to remove workers info.
-![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture9.PNG)
 
 6-Join our workers includes the form to join workers who provide services in the website.
 ![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture8.PNG)
