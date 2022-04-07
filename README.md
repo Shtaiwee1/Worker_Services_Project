@@ -1,6 +1,6 @@
 # Worker_services
 
-# Designed by:Mohammad Omair, Abdelhadi Numan, Hassan Odeh
+
 
 # Overview :
 This project is a website for connecting people with workers to cover their needs and solve their daily problems.
@@ -37,21 +37,29 @@ Jquery:JavaScript library for designing and make some web development tasks easy
 # Other technologies used in this project:
 AJAX: a web development technique for making asynchronous calls to the server.
 
-![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
+
 
 
 # Our project contains:
 
 1-Landing page which contains the login and registration forms, customer reviews, about us information, and details which urges the customers to use this application.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
 
 2-The main page contains services categories from which the user can choose different fields or add a new one.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
 
 3-My profile page contains the users information, he/she can edit his own account information.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
 
 4-see contacts page includes all workers that belong to the field the user have chosen, gives the user the ability to save any workers info. for future refernce.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
 
 5-My references page consists of all the workers details that the user have saved, and it gives the user ability to remove workers info.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/worker_service_project/github_pic.PNG)
 
 6-Join our workers includes the form to join workers who provide services in the website.
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture8.PNG)
 
 
+
+# Designed by:Mohammad Omair, Abdelhadi Numan, Hassan Odeh
